@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block title %}ホーム{% endblock title %}
+
+
+{% block h1 %}家計簿アプリ{% endblock h1 %}
+{% block content %}
+
+    <table class=" table table-striped table-sm table-hover  border-success">
+        <thead>
+            <caption>合計：¥</caption>
+            <tr class="text-center">
+                <th scope="col" class="text-dark"">金額</th>
+                <th scope="col" class="text-dark"">カテゴリー</th>
+                <th scope="col" class="text-dark"">内容</th>
+                <th scope="col" class="text-dark"">作成日</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for obj in  object_list%}
+            <tr class="table-success">
+                <td>¥ {{obj.price}}</td>
+                <td>{{obj.get_category_display}}</td>
+                <td>{{obj.content}}</td>
+                <td>{{obj.created_at|date:"Y年m月d日(D)  "}}</td>
+                <td class="text-center "><a href="{% url 'update' obj.pk %}" class="p-1 btn btn-success">修正</a></td>
+                <td class="text-center"><a href="{% url 'delete' obj.pk %}" class="p-1 btn btn-danger" onclick="return confirm('本当に削除してもよろしいですか？')">削除</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+    

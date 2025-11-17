@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    修正ページ
+{% endblock title %}
+
+
+{% block h1 %}
+    修正ページ
+{% endblock h1 %}
+    
+    
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <form method="POST" class="p-4 bg-light border border-success rounded form-group">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success" value="作成">
+        <a href="{% url 'index' %}" class="btn btn-primary">戻る</a>
+    </form>
+</div>
+
+{% endblock content %}
