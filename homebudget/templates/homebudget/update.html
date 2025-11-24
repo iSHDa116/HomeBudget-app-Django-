@@ -17,7 +17,7 @@
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" class="btn btn-success" value="作成">
-        <a href="{% url 'index' %}" class="btn btn-primary">戻る</a>
+        <a href="{% url 'homebudget:index' %}" class="btn btn-primary">戻る</a>
     </form>
 </div>
 

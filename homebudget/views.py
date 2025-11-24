@@ -1,12 +1,23 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
+from django.db.models import Sum , Avg # .models とは違う
 from .models import HomoBudget
 from .forms import CreateForm
 
 def index(request):
     object_list = HomoBudget.objects.all()
-    return render(request, "homebudget/index.html", {"object_list":object_list})
+    
+    aggregate_values = HomoBudget.objects.aggregate(total = Sum("price"), avg = Avg("price"))
+    # {}は辞書型
+    return render(request, 
+                "homebudget/index.html",
+                {
+                    "object_list":object_list,
+                    "total":aggregate_values["total"],
+                    "avg":aggregate_values["avg"]    
+                }
+                )
 
 # 削除機能。jsのconfirm()を使うため関数を使用
 def DeleteDate(request, pk):

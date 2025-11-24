@@ -10,14 +10,35 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous"
     />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" >
     <title>{% block title %}{% endblock %}</title>
 
 <header>
     <nav class="navbar navbar-dark bg-success stcky-top">
+        
+
+            
         <div class="nav-bar d-flex flex-row">
-            <a class="nav-link mx-3 text-light" href="{% url 'index' %}" >ホーム</a>
-            <a class="nav-link mx-3 text-light" href="{% url 'history' %}" >履歴</a>
-            <a class="nav-link mx-3 text-light" href="{% url 'create' %}" >作成</a>
+            {% if request.user.is_authenticated %}
+            <a class="nav-link mx-3 text-light" href="{% url 'homebudget:index' %}" >ホーム</a>
+            <a class="nav-link mx-3 text-light" href="{% url 'homebudget:history' %}" >履歴</a>
+            <a class="nav-link mx-3 text-light" href="{% url 'homebudget:create' %}" >作成</a>
+            {% endif %}
+        </div>
+
+        <div class="nav-bar d-flex flex-row">
+            
+            {% if request.user.is_authenticated %}
+                <label class="text-light" for="">ユーザー：{{request.user.username}}</label>
+                <form method="POST" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <button class="text-light nav-link mx-3" type="submit">ログアウト</button>
+                </form>
+            {% else %}
+                <a href="{% url 'accounts:login' %}" class="text-light nav-link mx-3">ログイン</a>
+                <a href="" class="text-light nav-link mx-3">会員登録</a>
+            {% endif %}
+                
         </div>
     </nav>
 </header>
