@@ -1,8 +1,16 @@
-#total {
-    color: red;
-    text-decoration: wavy;
-}
-
 a{
     text-decoration: none;
+}
+body{
+    background-color: #c3dfc7;
+}
+.result-table{
+    text-decoration: none;
+}
+.total {
+    color: rgb(255, 0, 0);
+}
+
+.avg {
+    color: rgb(7, 176, 151);
 }
