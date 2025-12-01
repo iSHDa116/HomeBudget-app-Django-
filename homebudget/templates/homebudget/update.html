@@ -4,21 +4,23 @@
     修正ページ
 {% endblock title %}
 
-
-{% block h1 %}
-    修正ページ
-{% endblock h1 %}
-    
     
 {% block content %}
 
-<div class="card" style="width: 18rem;">
-    <form method="POST" class="p-4 bg-light border border-success rounded form-group">
+
+<div class="d-flex justify-content-center ">
+<div class=" card border border-success" style="width: 18rem;">
+    <div class="card card-header bg-light text-center"><h3>修正ページ</h3></div>
+    <div class="card-body">
+    <form method="POST" class=" rounded form-group">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" class="btn btn-success" value="作成">
         <a href="{% url 'homebudget:index' %}" class="btn btn-primary">戻る</a>
     </form>
+    </div>
+
+</div>
 </div>
 
 {% endblock content %}
